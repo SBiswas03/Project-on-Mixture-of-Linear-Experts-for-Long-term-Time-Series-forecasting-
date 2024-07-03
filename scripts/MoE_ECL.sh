@@ -15,12 +15,12 @@ else
   MY_MODEL="${MODEL}"
 fi
 
-head_dropout=$4
+head_dropout=0
 
 (
-pred_len=$1
-lr=$2
-t_dim=$3
+pred_len=336
+lr=0.005
+t_dim=336
 aug_rate=0
 aug_method=f_mask
 
@@ -49,7 +49,7 @@ fi
 
 python -u run_longExp.py \
 --is_training 1 \
---root_path ./dataset/ \
+--root_path ./storage/vandita/data/forecasting/forecastingIntern/dataset/ \
 --data_path ECL.csv \
 --model_id ECL_$MY_SEQ_LEN'_'$pred_len'_'$aug_method'_'$aug_rate'_'$lr'_'$t_dim \
 --model MoLE_$MY_MODEL \
@@ -60,7 +60,7 @@ python -u run_longExp.py \
 --enc_in 321 \
 --des 'Exp' \
 --itr 1 \
---batch_size 128  \
+--batch_size 8  \
 --in_batch_augmentation \
 --aug_method  $aug_method \
 --aug_rate $aug_rate \
